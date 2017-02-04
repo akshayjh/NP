@@ -1,0 +1,107 @@
+\documentclass[
+a4paper, 
+12pt, 
+]{article}
+
+\usepackage[ngerman,english]{babel}			% Kapitel/Chapter. typographic rules
+%\usepackage[german]{babel}
+
+
+
+\usepackage[utf8]{inputenc}			% Encoding with umlauts and ß
+%\usepackage{lipsum}				 			% testing text as \lipsum[1-3] 			 
+%\usepackage{titling}							% imports \theauthor
+\usepackage{graphicx}						% include graphics
+\usepackage{siunitx}							% corretct formatting of units
+\usepackage[framed,numbered,autolinebreaks,useliterate]{mcode} % for matlab code
+
+\usepackage{amsmath}            % nice equations
+\usepackage{url}                			% URLs
+%\usepackage{natbib}             		% author-year bibliography style
+\usepackage{hyperref}           	% PDF links
+%\usepackage{subfig}             	% Subfigures (a), (b), etc
+%\usepackage{nomencl}            	% Nomenclature	
+\usepackage{tcolorbox}
+\usepackage{Systemtheorie}		 	% style with headers/footers/logo/firstpage
+\fancyfoot[R]{Juri Fedjaev} 
+\usepackage{units}		% nice fractions using \nicefrac
+\usepackage{blindtext}
+\usepackage{mcode}
+%\usepackage[scale=0.9]{geometry}
+\usepackage[update,prepend]{epstopdf}
+
+ 
+% ----------------------------------------------------------------------------
+
+
+\begin{document}
+	
+	\thispagestyle{firstpage} 			% use different style here (from .sty file)
+	
+	\section*{Neuroprothetik -- Übung 7: CI Signalverarbeitung}
+	\subsection{Aufgabe 1}
+	\subsection*{a)} (Implementieren Sie die Filterbank mit Butterworth IIR Filtern und Ploten sie die Frequenzgänge der Filter für 3 und 22 Kanäle.)\\
+	\begin{figure}[h]
+\centering
+\includegraphics[width=0.6\linewidth]{Plots/a22_ampSpektrum}
+\caption{Frequenzgang des gesprochenen Wortes 'Neuroprothetik', aufgenommen mit einer Samplingrate von $f_s = 44.1$ kHz.}
+\label{fig:a22_ampSpektrum}
+\end{figure}
+
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.6\linewidth]{Plots/a3_fbSpektrum}
+		\caption{Frequenzgänge der Filter für 3 Kanäle.}
+		\label{fig:a3_fbSpektrum}
+	\end{figure}
+
+	
+	\begin{figure}
+\centering
+\includegraphics[width=0.6\linewidth]{Plots/a22_fbSpektrum}
+\caption{Frequenzgänge der Filter für 22 Kanäle.}
+\label{fig:a22_fbSpektrum}
+\end{figure}
+
+\subsection*{b)} (Nehmen Sie ein beliebiges Wort mit ihrer Soundkarte auf und verarbeiten Sie es mit
+ihrer Filterbank. Ploten Sie die Ausgänge der jeweiligen Kanäle für eine 6 und eine 12
+Kanal Filterbank.)
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.6\linewidth]{Plots/b6}
+\caption{Gesprochenes Wort 'Neuroprothetik' gefiltert mit einer 6-kanaligen Filterbank}
+\label{fig:b6}
+\end{figure}
+
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.6\linewidth]{Plots/b12}
+\caption{Gesprochenes Wort 'Neuroprothetik', gefiltert mit einer 12-kanaligen Filterbank}
+\label{fig:b12}
+\end{figure}
+
+\newpage
+\subsection*{c)} (Fügen sie die Kanalausgänge nach der Filterung wieder zusammen. Plotten sie das
+Langzeitspektren und das Spectrogram (Kurzzeitspektren) eines beliebigen aufgenommenen
+Wortes, vor und nach der Filterung, mit einer 3 und einer 12 Kanal Filterbank.)
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.95\linewidth]{Plots/c3}
+\caption{3-Kanal Filterbank: Plot zu gesprochenem Wort 'Neuroprothetik' (oben link), gefilterter und wieder zusammengesetzte Version des Wortes (oben rechts), Spektrogramm vor Filterung (Mitte) und nach Filterung (unten).}
+\label{fig:c3}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.95\linewidth]{Plots/c12}
+\caption{12-Kanal Filterbank: Plot zu gesprochenem Wort 'Neuroprothetik' (oben link), gefilterter und wieder zusammengesetzte Version des Wortes (oben rechts), Spektrogramm vor Filterung (Mitte) und nach Filterung (unten).}
+\label{fig:c12}
+\end{figure}
+
+
+	
+	
+
+\end{document}

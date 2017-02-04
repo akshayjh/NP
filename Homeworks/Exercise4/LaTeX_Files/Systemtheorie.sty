@@ -1,0 +1,38 @@
+\ProvidesPackage{Systemtheorie}
+
+%\RequirePackage{titling}					% imports \theauthor
+\RequirePackage{graphicx}				% include graphics
+\RequirePackage[							% narrower margins than default
+	a4paper,
+	includefoot,
+	bottom=32mm,
+]{geometry}
+
+
+
+\RequirePackage{fancyhdr}				% fancyheaders
+\fancyhf{} 									% clears all header and footer fields
+\pagestyle{fancy}							% applies the 'fancy' style to current document
+
+\setlength{\headheight}{15pt}			% height of area reserved for headers
+\setlength{\headsep}{10pt}				% distance between header and top of text
+\renewcommand{\headrulewidth}{.4pt} 	% thin separating line under headers
+\renewcommand{\footrulewidth}{0pt} 	% no separating line on footers
+\fancyhead[R]{\rightmark}				% subsection name
+\fancyfoot[L]{\thepage}
+%\fancyfoot[R]{\theauthor} 
+
+\fancypagestyle{firstpage}{				% defines an additional style for first page
+	\setlength{\headheight}{35pt}		% with a larger header
+    \fancyhead[L]{							% and a logo
+	    \includegraphics[height=30pt]{Bilder/bai-tum}	
+	}
+	\fancyhead[R]{}							% and no subsection header
+}
+
+
+
+% No section number in subsection
+\renewcommand{\thesubsection}{\arabic{subsection}}
+% No subsection number in header
+\renewcommand{\subsectionmark}[1]{\markright{#1}}

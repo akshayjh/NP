@@ -1,0 +1,114 @@
+\documentclass[
+a4paper, 
+12pt, 
+]{article}
+
+% \usepackage[ngerman,english]{babel}			% Kapitel/Chapter. typographic rules
+\usepackage[english]{babel}
+
+
+
+\usepackage[utf8]{inputenc}			% Encoding with umlauts and ß
+%\usepackage{lipsum}				 			% testing text as \lipsum[1-3] 			 
+%\usepackage{titling}							% imports \theauthor
+\usepackage{graphicx}						% include graphics
+\usepackage{siunitx}							% corretct formatting of units
+\usepackage[framed,numbered,autolinebreaks,useliterate]{mcode} % for matlab code
+
+\usepackage{amsmath}            % nice equations
+\usepackage{url}                			% URLs
+%\usepackage{natbib}             		% author-year bibliography style
+\usepackage{hyperref}           	% PDF links
+%\usepackage{subfig}             	% Subfigures (a), (b), etc
+%\usepackage{nomencl}            	% Nomenclature	
+\usepackage{tcolorbox}
+\usepackage{Systemtheorie}		 	% style with headers/footers/logo/firstpage
+\fancyfoot[R]{Juri Fedjaev} 
+\usepackage{units}		% nice fractions using \nicefrac
+\usepackage{blindtext}
+\usepackage{mcode}
+%\usepackage[scale=0.9]{geometry}
+\usepackage[update,prepend]{epstopdf}
+
+ 
+% ----------------------------------------------------------------------------
+
+
+\begin{document}
+	
+	\thispagestyle{firstpage} 			% use different style here (from .sty file)
+	
+	\section*{Neuroprothetik -- Exercise 6: Electric Stimulation}
+	\subsection{Calculate the Potential Field}
+	\subsubsection{Potential Field}
+	\textit{See figure~\ref{fig:plot1_1}.}
+	\begin{figure}[h]
+\centering
+\includegraphics[width=0.5\linewidth]{Plots/plot1}
+\caption{Potential field for a 50 $\mu$m by 50 $\mu$m slice in a distance of 10 $\mu$m from a current point-source.}
+\label{fig:plot1_1}
+\end{figure}
+
+\subsubsection{Activation function}
+	\textit{See figures~\ref{fig:plot12_1} and~\ref{fig:plot12_2}}.
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.3\linewidth]{Plots/plot12_1}
+\includegraphics[width=0.3\linewidth]{Plots/plot12_2}
+\includegraphics[width=0.3\linewidth]{Plots/plot12_3}
+\caption{For electrode current of $I = 1$ mA. Left: a) the external potential $\phi$, middle: b) the electric field $E$, right: c) the activation function $A$.}
+\label{fig:plot12_1}
+\end{figure}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.3\linewidth]{Plots/plot12_4}
+	\includegraphics[width=0.3\linewidth]{Plots/plot12_5}
+	\includegraphics[width=0.3\linewidth]{Plots/plot12_6}
+	\caption{For electrode current of $I = -1$ mA. Left: a) the external potential $\phi$, middle: b) the electric field $E$, right: c) the activation function $A$.}
+	\label{fig:plot12_2}
+\end{figure}
+
+\subsection{Create a Neuron Model}
+\subsubsection{Stimulate the Axon}
+The various axon stimulations with different electrode currents are plotted in figures~\ref{fig:plot2_1},~\ref{fig:plot2_3} and~\ref{fig:plot2_5}. 
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.45\linewidth]{Plots/plot2_1}
+	\includegraphics[width=0.45\linewidth]{Plots/plot2_2}
+	\caption{Mono-phasic $1$ ms current pulse. Left: (1) $I= -0.25$ mA. Right: (2) $I= -1$ mA. }
+	\label{fig:plot2_1}
+\end{figure}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.45\linewidth]{Plots/plot2_3}
+	\includegraphics[width=0.45\linewidth]{Plots/plot2_4}
+	\caption{Bi-phasic current pulse. $2$ ms per phase and negative phase first. Left: (3) $I= 0.5$ mA. Right: (4) $I= 2$ mA. }
+	\label{fig:plot2_3}
+\end{figure}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.45\linewidth]{Plots/plot2_5}
+	\includegraphics[width=0.45\linewidth]{Plots/plot2_6}
+	\caption{Mono-phasic $1$ ms current pulse. Left: (5) $I= 0.25$ mA. Right: (6) $I= 5$ mA. }
+	\label{fig:plot2_5}
+\end{figure}
+
+\subsubsection*{Brief interpretation}
+The stimulation of the axon always starts at $t = 5$ ms and the simulation is run for a total of 30 ms. The electrode is positioned at the center of the axon (compartment nr. 50) at a distance of $d = 10\mu$m.
+\begin{itemize}
+	\item Case (1): The axon is stimulated at sub-threshold-level, as it is only slightly depolarized (yellowish color). The dark blue colors around compartments 25 and 75 indicate a slight hyperpolarization due to the side-maxima of the activation function (see section 1.2 above). 
+	\item Case (2): The stimulation with a current of $I= -1$mA results in the firing of several action potentials located at the central minimum of the activation function (at approx. compartments  45 to 55, nearly simultaneously), because of the nature of the potential field (see plot in section 1.1). As the neighboring compartments are now refractory, only the non-excited compartments next to the APs are then able to conduct the AP. This results in the two diagonal 'lines', which are the two spike-trains. 
+	\item Case (3): Now, we are applying bi-phasic current pulses. The current of $I= 0.5$ mA is still sub-threshold stimulation for the centered compartments. However, the hyperpolarization kicks in faster than before in case (1), as the positive phase of the current pulse is now present and accelerates the process of repolarization. Dark blue areas again represent hyperpolarized compartments. 
+	\item Case (4): More compartments are stimulated simultaneously than it was the case in case (2), which is due to the higher current $I = 2$ mA. The APs thus develop faster at the neuronal compartments. Other than that, no noticeable side effects of the bi-phasic nature of the pulse are noticeable. 
+	\item Case (5): Now, a positive current pulse is generated at the electrode. This results in a simple and very slight hyperpolarization at the center (max. of the activation function) and sub-threshold stimulation at the compartments located at the side-minima of the activation function. 
+	\item Case (6): Now, the current at $I =5$ mA, which makes the side-minima ('virtual cathodes') of the activation function reach levels high enough to stimulate the compartments around compartments number 75 and 25. However, the spike-trains only travel toward the center of the axon, as the activation function only has steep slopes on the 'inner' sides of the side-maxima. The rather flatly decreasing parts at the outer sides of the side-maxima make impossible to develop spike trains towards compartments number 1 and 100.\\
+	For the excitation of the compartments around compartment 50 at $t = 15$ ms, a different phenomenon comes into place: \textit{anode break excitation}. When hyperpolarized, gating variable $h$ is increased and $m$ is decreased. After the current pulse, the membrane potential shifts back to its resting potential $V_{rest}$. Further, the time constant of $h$ is smaller than the time constant of $m$. Now, when the gate closes, $m$ increases its value while $h$ decreases, but, $h$ decreases more slowly than $m$ increases, due to their respective time constants. As a result, the membrane is in a  very excitable state. If $h$ is now sufficiently elevated by the hyperpolarization, the inward flow of sodium-ions results in an action potential (as described by Warren M. Grill, ELECTRICAL STIMULATION OF THE PERIPHERAL NERVOUS SYSTEM: BIOPHYSICS AND EXCITATION PROPERTIES, chapter 6.6). 
+\end{itemize}
+
+
+
+	
+	
+
+\end{document}
